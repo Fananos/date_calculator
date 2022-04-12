@@ -20,7 +20,7 @@ class DateCalculatorNaive:
         return self.days_in_month[self._month - 1]
 
     def _calculate_days_feb(self) -> int:
-        if (self._year % 4 and not self._year % 100 == 0) or self._year % 400 == 0:
+        if (self._year % 4 == 0 and self._year % 100 != 0) or self._year % 400 == 0:
             return self.days_in_month[1] + 1
         return self.days_in_month[1]
 
@@ -44,7 +44,7 @@ class DateCalculatorNaive:
 
 if __name__ == '__main__':
     calculator = DateCalculatorNaive()
-    days_to_add = 2024
+    days_to_add = 20
     date = datetime.datetime(year=2004, month=2, day=10)
     new_date = calculator.add_to_date(date, days_to_add)
     print(new_date)
