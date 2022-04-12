@@ -1,7 +1,11 @@
 import datetime
 
 
-class DateCalculator:
+class DateCalculatorEfficient:
+
+
+
+class DateCalculatorNaive:
     days_in_month = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
 
     def __init__(self):
@@ -21,7 +25,8 @@ class DateCalculator:
 
     def _calculate_days_feb(self) -> int:
         if self._year % 4 == 0:
-            return self.days_in_month[1] + 1
+            if self._year % 100 != 0 or self._year % 400 == 0:
+                return self.days_in_month[1] + 1
         return self.days_in_month[1]
 
     def _next_day(self):
@@ -43,8 +48,8 @@ class DateCalculator:
 
 
 if __name__ == '__main__':
-    calculator = DateCalculator()
-    days_to_add = 1024
+    calculator = DateCalculatorNaive()
+    days_to_add = 2024
     date = datetime.datetime(year=2004, month=2, day=10)
     new_date = calculator.add_to_date(date, days_to_add)
     print(new_date)
